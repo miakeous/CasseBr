@@ -1,17 +1,15 @@
 #ifndef MUR_H
 #define MUR_H
-
+/*
 //include Pierre (mac)
-
 #include "glu.h"
 #include <GLUT/glut.h>
-
-
+*/
 
 //include Manon (windows)
-/*#include <GL/glu.h>
+#include <GL/glu.h>
 #include <GL/gl.h>
-*/
+
 
 #include <QDebug>
 

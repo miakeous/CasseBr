@@ -1,14 +1,18 @@
 #ifndef PALET_H
 #define PALET_H
+/*
+//Pierre
 #include "glu.h"
 #include <GLUT/glut.h>
-#include <QDebug>
+*/
 
 //include Manon (Windows)
-/*
 #include <GL/glu.h>
 #include <GL/gl.h>
-*/
+
+
+#include <QDebug>
+
 class Palet
 {
 public:
@@ -20,6 +24,7 @@ public:
     float taille = 0;
     float getTaille(){return taille;}
     float getPosX(){return posx;}
+
 public slots :
 
 private:

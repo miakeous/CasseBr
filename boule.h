@@ -1,15 +1,15 @@
 #ifndef BOULE_H
 #define BOULE_H
-
+/*
+//Pierre
 #include "glu.h"
 #include <GLUT/glut.h>
-/*
- Manon
+*/
+
+// Manon
   #include <GL/glu.h>
 
 
-
-  */
 class boule
 {
 public:
