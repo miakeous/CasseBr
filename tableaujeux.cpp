@@ -118,7 +118,7 @@ int TableauJeux::collisionl(){
     qDebug()<< posx;
     qDebug()<< posz;
      if(this->pause==false){
-   if(droit->getPosx()-/*+ taille*/10<=posx){
+   if(droit->getPosx()-/*+ taille*/7<=posx){
        qDebug()<<"Mur de droite";
        if(angle<0){
            newangle = angle - 90;
@@ -153,6 +153,12 @@ int TableauJeux::collisionl(){
        newangle =-90;
        pause=true;
 
+
+   }
+   int i=0;
+   while(m_Brique.size()>i){
+       if(posx > + m_Brique[i].getLargeur())
+       i++;
 
    }
     // converting degrees to radians

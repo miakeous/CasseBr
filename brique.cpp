@@ -11,30 +11,16 @@ Brique::Brique(float x,float y, float r, float v, float b,QString filename)
     couleur[1] = v;
     couleur[2] = b;
     couleur[3] = 1.0;
-    taille = 12;
+    taille = 3;
+    hauteur = 9;
     largeur = 3;
     //On importe une belle texture pour la brique
     //imgText =  QGLWidget::convertToGLFormat(QImage(filename));
 
      glEnable(GL_DEPTH_TEST);
      //glColor3f(couleur[0],couleur[1],couleur[2]);
-
-    //On définit les textures et on les active
-    //glGenTextures( 1, &texture);
-    //glBindTexture( GL_TEXTURE_2D, texture);
-    //glTexImage2D( GL_TEXTURE_2D, 0, 3, imgText.width(), imgText.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, imgText.bits() );
-    //glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-    //glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-    //gluQuadricTexture(quadrique, GL_TRUE);
-   /* qDebug() << "Rouge";
-    qDebug() << couleur[0];
-    qDebug() << "Vert";
-    qDebug() << couleur[1];
-    qDebug() << "Bleu";
-    qDebug() << couleur[2];*/
-
-
 }
+
 Brique::~Brique()
  {
      // Destruction de la quadrique
@@ -50,7 +36,7 @@ void Brique::display(){
     glPushMatrix();
 
 
-    rectangle(0,0,0,taille,5);
+    rectangle(0,0,0,taille,hauteur);
     //glMaterialfv(GL_FRONT,GL_AMBIENT,couleur);
     //glEnable(GL_TEXTURE_2D);
     //glBindTexture( GL_TEXTURE_2D, texture);
@@ -67,7 +53,7 @@ void Brique::display(){
 void Brique::rectangle(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat hauteur, GLfloat taille){
 
     glPopMatrix();
-    glTranslatef(posx,posy -15 ,-10);
+    glTranslatef(posx,posy,-10);
     glColor3f(couleur[0],couleur[1],couleur[2]);
     glBegin(GL_POLYGON);
 

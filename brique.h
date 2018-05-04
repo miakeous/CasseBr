@@ -25,14 +25,16 @@ public:
     Brique(float x,float y, float r, float v, float b,QString filename);
     virtual ~Brique();
     void display();
+    int hauteur =0;
     int largeur =0;
     int taille = 0;
+    int getLargeur(){return hauteur;}
+    int getTaille(){return taille;}
     int getCol(QString a){return posy/4;}
     GLfloat getColour(){return couleur[0];}
     int getPosx(){return posx;}
     int getPosz(){return posy;}
-    int getLargeur(){return 3;}
-    int getLongueur(){return 4;}
+
 private :
     float posx = 0;
     float posy = 0;

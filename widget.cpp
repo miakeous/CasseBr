@@ -157,14 +157,14 @@ void Widget::match(){
                 if(vect.y>15){
                   //qDebug() << "pas pause";
                 //emit start();
-                    tableau->setPause(false);
+                    //tableau->setPause(false);
                 }
             }
             else{
                 if(vect.y< -15){
                    // qDebug() << "pause";
                    // qDebug() << vect.y;
-                    tableau->setPause(true);
+                    //tableau->setPause(true);
                             //emit stop();
                 }
            }
