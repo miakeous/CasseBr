@@ -1,12 +1,13 @@
 #include "mur.h"
 
-mur::mur(int X,int Z, int height, int width, QString rot)
+mur::mur(int X,int Z, int height, int width, QString rot, bool bas)
 {
     posX = X;
     posZ = Z;
     hauteur = height;
     largeur = width;
     tourne = rot;
+    murbas = bas;
 }
 
 void mur::display()
@@ -23,7 +24,9 @@ void mur::display()
 }
 
 void mur::rectangle(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat profondeur, GLfloat hauteur, GLfloat taille){
-    glColor3f(1,0.9,0);
+    if(!murbas)
+    {glColor3f(1,0.9,0);}
+    else {glColor3f(1,0,0);}
     glBegin(GL_POLYGON);
 
        glVertex3f(posX,posY,posZ);

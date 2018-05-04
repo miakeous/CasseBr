@@ -4,26 +4,24 @@ TableauJeux::TableauJeux()
 {
     pause = false;
     palet = new Palet(0,255,255,10);
-   // Brique *t = new Brique(10.0,-10.0,1.0,0,0,"");
-    //m_Brique.push_back(t);
-    for(int i=1 ;i <5; i++){
+
+    for(int i=1 ;i <6; i++){
         for(int j=-5;j<5;j++){
             float v2 = rand() % 255 + 1;
             float v3 = rand() % 255 + 1;
             float v4 = rand() % 255 + 1;
 
-
-            //m_Brique.push_back(new Brique(float(j*5),float(i*10),v2/255,v3/255,v4/255,"") );
+            m_Brique.push_back(new Brique(float(j*13),float(i*5),v2/255,v3/255,v4/255,"") );
 
         }
     }
+
     myball = new boule(255,0,255);
-    gauche = new mur(-80,-50,100,3, "gauche");
-    droit = new mur(80,-50,100,3,"droite");
-    haut = new mur(-80,47,160,3,"");
-    //m_Mur.push_back(gauche);
-    //m_Mur.push_back(droit);
-   // m_Mur.push_back(haut);
+    gauche = new mur(-78,-50,100,3, "gauche", false);
+    droit = new mur(78,-50,100,3,"droite", false);
+    haut = new mur(-78,47,156,3,"", false);
+    bas = new mur(-78,-50,156,1,"", true);
+
 
 
 }
@@ -54,11 +52,12 @@ void TableauJeux::affiche(){
      gauche->display();
      droit->display();
      haut->display();
+     bas->display();
 
     //qDebug()<<  palet->getTaille();
     while ( i < m_Brique.size() )
     {
-          //  m_Brique[i]->display();
+           m_Brique[i]->display();
             i++ ;
     }
     i=0;
@@ -157,10 +156,10 @@ int TableauJeux::collisionl(){
    }
    int i=0;
    while(m_Brique.size()>i){
-       if(posx > + m_Brique[i].getLargeur())
+       //if(posx > m_Brique[i].getLargeur())
        i++;
-
    }
+
     // converting degrees to radians
     double x = newangle*3.14159/180;
 

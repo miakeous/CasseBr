@@ -11,9 +11,9 @@ Brique::Brique(float x,float y, float r, float v, float b,QString filename)
     couleur[1] = v;
     couleur[2] = b;
     couleur[3] = 1.0;
-    taille = 3;
-    hauteur = 9;
-    largeur = 3;
+    taille = 4;
+    hauteur = 12;
+    largeur = 4;
     //On importe une belle texture pour la brique
     //imgText =  QGLWidget::convertToGLFormat(QImage(filename));
 
@@ -53,7 +53,7 @@ void Brique::display(){
 void Brique::rectangle(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat hauteur, GLfloat taille){
 
     glPopMatrix();
-    glTranslatef(posx,posy,-10);
+    glTranslatef(posx,posy+10,-10);
     glColor3f(couleur[0],couleur[1],couleur[2]);
     glBegin(GL_POLYGON);
 

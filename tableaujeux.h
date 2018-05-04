@@ -29,6 +29,7 @@ private:
     mur *gauche;
     mur *droit;
     mur *haut;
+    mur *bas;
     std::vector<Brique *> m_Brique;
     std::vector<mur *> m_Mur;
  private slots:

@@ -1,15 +1,19 @@
 #ifndef PALET_H
 #define PALET_H
+/*
+//Pierre
 #include "glu.h"
 #include <GLUT/glut.h>
+*/
+
 #include <QDebug>
 #include "mur.h"
 
 //include Manon (Windows)
-/*
 #include <GL/glu.h>
 #include <GL/gl.h>
-*/
+
+
 class Palet
 {
 public:
