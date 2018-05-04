@@ -20,7 +20,8 @@ void boule::display(){
     glPushMatrix();
 
         gluQuadricDrawStyle(quadrique, GLU_FILL);
-        glTranslatef(posx,posy,posz);
+        glTranslatef(posx,posz,0);
+        //glTranslatef(posx,-10,posz);
         glColor3f(couleur[0],couleur[1],couleur[2]);
         gluSphere(quadrique, 2.5,50,50);
 

@@ -44,7 +44,8 @@ void MyWidget::paintGL(){
     glLoadIdentity();
     glOrtho(-90,90,-50,50,-50,50);
     //glFrustum(-50,50,-50,50,-20,50);
-    gluLookAt(0,20,20,0,0,0,0,1,0);
+    //gluLookAt(0,20,20,0,0,0,0,1,0);
+    gluLookAt(0,0,30,0,0,0,0,1,0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
    /* glPushMatrix();

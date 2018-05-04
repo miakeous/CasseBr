@@ -5,6 +5,7 @@
 #include "boule.h"
 #include "mur.h"
 #include "palet.h"
+#include <cmath>
 class TableauJeux
 {
 public:
@@ -23,11 +24,17 @@ public:
     void setStop();
     bool getStart(){return this->start;}
     void setPause(bool t){pause = t;};
-private :
+private:
+    int collisionl();
     mur *gauche;
     mur *droit;
     mur *haut;
     std::vector<Brique *> m_Brique;
+    std::vector<mur *> m_Mur;
+ private slots:
+    void looselife();
+    signals:
+    void loose();
 };
 
 #endif // TABLEAUJEUX_H

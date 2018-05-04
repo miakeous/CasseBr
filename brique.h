@@ -1,18 +1,18 @@
 #ifndef BRIQUE_H
 #define BRIQUE_H
-/*
 //include Pierre (Mac)
+
 #include <QGLWidget>
 #include "glu.h"
 #include <GLUT/glut.h>
-*/
+
 
 
 //include Manon (Windows)
-#include <QGLWidget>
+/*#include <QGLWidget>
 #include <GL/glu.h>
 #include <GL/gl.h>
-
+*/
 
 
 #include <string>
@@ -25,6 +25,8 @@ public:
     Brique(float x,float y, float r, float v, float b,QString filename);
     virtual ~Brique();
     void display();
+    int largeur =0;
+    int taille = 0;
     int getCol(QString a){return posy/4;}
     GLfloat getColour(){return couleur[0];}
     int getPosx(){return posx;}
@@ -38,7 +40,7 @@ private :
     float couleur[4];
     QImage imgText;
     GLuint texture;
-    void rectangle(GLfloat posX, GLfloat posY, GLfloat posZ);
+    void rectangle(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat hauteur, GLfloat taille);
 
 };
 

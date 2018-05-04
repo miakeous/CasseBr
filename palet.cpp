@@ -22,7 +22,7 @@ void Palet::display(){
     //glBindTexture( GL_TEXTURE_2D, texture);
      //glColor3f(couleur[0],couleur[1],couleur[2]);
    // qDebug()<< posx;
-    rectangle(0,0,0,0,10);
+    rectangle(0,0,0,5,5);
     //gluSphere(quadrique, 5, 50, 50);
     //glDisable(GL_TEXTURE_2D);
     glPopMatrix();
@@ -30,7 +30,7 @@ void Palet::display(){
 
 void Palet::rectangle(float posX, float posY, float posZ, float largeur, float hauteur){
     glPushMatrix();
-    glTranslatef(posx,posy,posz);
+    glTranslatef(posx,posy,40);
     glColor3f(couleur[0],couleur[1],couleur[2]);
     glBegin(GL_POLYGON);
 
@@ -78,22 +78,25 @@ void Palet::rectangle(float posX, float posY, float posZ, float largeur, float h
 }
 
 
-void Palet::setPos(float x){
+void Palet::setPos(float x,mur *gauche,mur *droite){
     //qDebug()<< "on rentre dans le setPos";
     if(this->posx>=0){
         //Remplacer 49 par position mur droite
-        if((this->posx+x)+this->getTaille()< 49){
+        bool t =(this->posx+x)+this->getTaille()<= droite->getPosx()-1.75;
+       // qDebug()<<(this->posx+x)+this->getTaille();
+        //qDebug()<< "droite";
+        //qDebug()<< droite->getPosx();
+        //qDebug()<< gauche->getPosz();
+        if(t){
 
             this->posx+=x;
         }
-        else{
 
-        }
     }
     else
     {
         //Remplacer -49 par position mur gauche
-        if(this->posx- this->getTaille()+x> -49){
+        if(this->posx+x>= gauche->getPosx()){
             this->posx+=x;
         }
     }
