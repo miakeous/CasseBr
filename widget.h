@@ -11,16 +11,17 @@
 #include <iostream>
 #include "tableaujeux.h"
 
-
+/*
 //Pierre
 #include "glu.h"
 #include <GLUT/glut.h>
+*/
 
 //include Manon (Windows)
-/*#include <QGLWidget>
+#include <QGLWidget>
 #include <GL/glu.h>
 #include <GL/gl.h>
-*/
+
 
 //#include <glwidget.h>
 

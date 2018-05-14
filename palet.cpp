@@ -1,6 +1,8 @@
 #include "palet.h"
+#include "QImage.h"
 
-Palet::Palet(float r, float v, float b,float tail)
+
+Palet::Palet(float r, float v, float b,float tail, QImage *imagepalet)
 {
     taille= tail;
     couleur[0] = r;
@@ -8,6 +10,17 @@ Palet::Palet(float r, float v, float b,float tail)
     couleur[2] = b;
     couleur[3] = 1.0;
     glEnable(GL_DEPTH_TEST);
+
+    tex =imagepalet;
+    glGenTextures(1, &m_TextureID);
+    glBindTexture(GL_TEXTURE_2D, m_TextureID);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tex->width(), tex->height(), 0, GL_RGBA , GL_UNSIGNED_BYTE, tex->bits());
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    glBindTexture(GL_TEXTURE_2D, m_TextureID);
+
+    // tex = QImage();
 }
 
 
@@ -31,49 +44,81 @@ void Palet::display(){
 void Palet::rectangle(float posX, float posY, float posZ, float largeur, float hauteur){
     glPushMatrix();
     glTranslatef(posx,posy,40);
-    glColor3f(couleur[0],couleur[1],couleur[2]);
-    glBegin(GL_POLYGON);
+    glColor3f(1,1,1);
 
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tex->width(), tex->height(), 0, GL_RGBA , GL_UNSIGNED_BYTE, tex->bits());
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glEnable(GL_TEXTURE_2D);
+
+    glBegin(GL_POLYGON);
+       glTexCoord2f(0,0);
        glVertex3f(posX,posY,posZ);
+       glTexCoord2f(1,0);
        glVertex3f(posX,posY+ largeur,posZ);
+       glTexCoord2f(1,1);
        glVertex3f(posX,posY+ largeur,posZ+hauteur);
+       glTexCoord2f(0,1);
        glVertex3f(posX,posY,posZ+hauteur);
     glEnd();
-    glBegin(GL_POLYGON);
 
+    glBegin(GL_POLYGON);
+       glTexCoord2f(0,0);
        glVertex3f(posX+taille,posY,posZ);
+       glTexCoord2f(1,0);
        glVertex3f(posX+taille,posY+ largeur,posZ);
+       glTexCoord2f(1,1);
        glVertex3f(posX+taille,posY+ largeur,posZ+hauteur);
+       glTexCoord2f(0,1);
        glVertex3f(posX+taille,posY,posZ+hauteur);
     glEnd();
-    glBegin(GL_POLYGON);
 
+    glBegin(GL_POLYGON);
+       glTexCoord2f(0,0);
        glVertex3f(posX,posY,posZ);
+       glTexCoord2f(1,0);
        glVertex3f(posX,posY,posZ+hauteur);
+       glTexCoord2f(1,1);
        glVertex3f(posX+taille,posY,posZ+hauteur);
+       glTexCoord2f(0,1);
        glVertex3f(posX+taille,posY,posZ);
     glEnd();
-    glBegin(GL_POLYGON);
 
+    glBegin(GL_POLYGON);
+       glTexCoord2f(0,0);
        glVertex3f(posX,posY+largeur,posZ);
+       glTexCoord2f(1,0);
        glVertex3f(posX,posY+largeur,posZ+hauteur);
+       glTexCoord2f(1,1);
        glVertex3f(posX+taille,posY+largeur,posZ+hauteur);
+       glTexCoord2f(0,1);
        glVertex3f(posX+taille,posY+largeur,posZ);
     glEnd();
-    glBegin(GL_POLYGON);
 
+    glBegin(GL_POLYGON);
+       glTexCoord2f(0,0);
        glVertex3f(posX,posY,posZ);
+       glTexCoord2f(1,0);
        glVertex3f(posX,posY+largeur,posZ);
+       glTexCoord2f(1,1);
        glVertex3f(posX+taille,posY+largeur,posZ);
+       glTexCoord2f(0,1);
        glVertex3f(posX+taille,posY,posZ);
     glEnd();
-    glBegin(GL_POLYGON);
 
+    glBegin(GL_POLYGON);
+       glTexCoord2f(0,0);
        glVertex3f(posX,posY,posZ+hauteur);
+       glTexCoord2f(1,0);
        glVertex3f(posX,posY+largeur,posZ+hauteur);
+       glTexCoord2f(1,1);
        glVertex3f(posX+taille,posY+largeur,posZ+hauteur);
+       glTexCoord2f(0,0);
        glVertex3f(posX+taille,posY,posZ+hauteur);
     glEnd();
+
+    glDisable(GL_TEXTURE_2D);
+
     glPopMatrix();
 }
 

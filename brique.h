@@ -23,7 +23,7 @@
 class Brique
 {
 public:
-    Brique(float x,float y, float r, float v, float b,QString filename);
+    Brique(float x,float y, float r, float v, float b,QString filename, QImage *image);
     virtual ~Brique();
     void display();
     int hauteur =0;
@@ -41,9 +41,10 @@ private :
     float posy = 0;
     //GLUquadric* quadrique =  gluNewQuadric();
     float couleur[4];
-    QImage imgText;
-    GLuint texture;
+    QImage *tex;
+    GLuint m_TextureID = 0;
     void rectangle(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat hauteur, GLfloat taille);
+
 
 };
 

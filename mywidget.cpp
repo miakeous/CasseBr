@@ -90,12 +90,12 @@ void MyWidget::setPosPaletg(){
      updateGL();
 }
 void MyWidget::setStart(){
-     qDebug()<<"start";
+   //  qDebug()<<"start";
     this->getTableau().setStart();
      updateGL();
 }
 void MyWidget::setStop(){
-     qDebug()<<"stop";
+   //  qDebug()<<"stop";
     this->getTableau().setStart();
      updateGL();
 }

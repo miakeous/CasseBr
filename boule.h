@@ -9,6 +9,9 @@
 // Manon
   #include <GL/glu.h>
 
+#include <QImage>
+#include <QGLWidget>
+
 
 class boule
 {
@@ -35,6 +38,10 @@ private :
     float posz = 17.5;
 
     float couleur[4];
+
+    GLuint m_TextureID = 0;
+    QImage tex;
+
 };
 
 #endif // BOULE_H

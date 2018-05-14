@@ -1,17 +1,17 @@
 #ifndef MYWIDGET_H
 #define MYWIDGET_H
 
-
+/*
 //Pierre
 #include "glu.h"
 #include <GLUT/glut.h>
-
+*/
 
 //include Manon (Windows)
-/*#include <QGLWidget>
+#include <QGLWidget>
 #include <GL/glu.h>
 #include <GL/gl.h>
-*/
+
 
 
 #include <QApplication>

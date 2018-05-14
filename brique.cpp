@@ -1,6 +1,7 @@
 #include "brique.h"
+#include <QDebug>
 
-Brique::Brique(float x,float y, float r, float v, float b,QString filename)
+Brique::Brique(float x,float y, float r, float v, float b,QString filename, QImage *image)
 {
     //On définit sa position initiale
     posx = x;
@@ -18,7 +19,16 @@ Brique::Brique(float x,float y, float r, float v, float b,QString filename)
     //imgText =  QGLWidget::convertToGLFormat(QImage(filename));
 
      glEnable(GL_DEPTH_TEST);
-     //glColor3f(couleur[0],couleur[1],couleur[2]);
+     tex = image;
+     //tex = QGLWidget::convertToGLFormat(QImage(QString(":/pourbrique.jpg")));
+     glGenTextures(1, &m_TextureID);
+     glBindTexture(GL_TEXTURE_2D, m_TextureID);
+     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tex->width(), tex->height(), 0, GL_RGBA , GL_UNSIGNED_BYTE, tex->bits());
+     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+     glBindTexture(GL_TEXTURE_2D, m_TextureID);
+
 }
 
 Brique::~Brique()
@@ -52,51 +62,90 @@ void Brique::display(){
 
 void Brique::rectangle(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat hauteur, GLfloat taille){
 
-    glPopMatrix();
+//    glPopMatrix();
+    glPushMatrix();
     glTranslatef(posx,posy+10,-10);
     glColor3f(couleur[0],couleur[1],couleur[2]);
-    glBegin(GL_POLYGON);
 
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 800,533, 0, GL_RGBA , GL_UNSIGNED_BYTE, tex->bits());
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glEnable(GL_TEXTURE_2D);
+
+    glBegin(GL_POLYGON);
+       glColor3f(couleur[0], couleur[1], couleur[2]);
+       glTexCoord2f(0,0);
        glVertex3f(posX,posY,posZ);
+       glTexCoord2f(1,0);
        glVertex3f(posX,posY + largeur,posZ);
+       glTexCoord2f(1,1);
        glVertex3f(posX,posY + largeur,posZ+hauteur);
+       glTexCoord2f(0,1);
        glVertex3f(posX,posY ,posZ+hauteur);
     glEnd();
-    glBegin(GL_POLYGON);
 
+    glBegin(GL_POLYGON);
+       glColor3f(couleur[0], couleur[1], couleur[2]);
+       glTexCoord2f(0,0);
        glVertex3f(posX+taille,posY,posZ);
+       glTexCoord2f(1,0);
        glVertex3f(posX+taille,posY+ largeur,posZ);
+       glTexCoord2f(1,1);
        glVertex3f(posX+taille,posY+ largeur,posZ+hauteur);
+       glTexCoord2f(0,1);
        glVertex3f(posX+taille,posY,posZ+hauteur);
     glEnd();
-    glBegin(GL_POLYGON);
 
+    glBegin(GL_POLYGON);
+       glColor3f(couleur[0], couleur[1], couleur[2]);
+       glTexCoord2f(0,0);
        glVertex3f(posX,posY,posZ);
+       glTexCoord2f(1,0);
        glVertex3f(posX,posY,posZ+hauteur);
+       glTexCoord2f(1,1);
        glVertex3f(posX+taille,posY,posZ+hauteur);
+       glTexCoord2f(0,1);
        glVertex3f(posX+taille,posY,posZ);
     glEnd();
-    glBegin(GL_POLYGON);
 
+    glBegin(GL_POLYGON);
+       glColor3f(couleur[0], couleur[1], couleur[2]);
+       glTexCoord2f(0,0);
        glVertex3f(posX,posY+largeur,posZ);
+       glTexCoord2f(1,0);
        glVertex3f(posX,posY+largeur,posZ+hauteur);
+       glTexCoord2f(1,1);
        glVertex3f(posX+taille,posY+largeur,posZ+hauteur);
+       glTexCoord2f(0,1);
        glVertex3f(posX+taille,posY+largeur,posZ);
     glEnd();
-    glBegin(GL_POLYGON);
 
+    glBegin(GL_POLYGON);
+       glColor3f(couleur[0], couleur[1], couleur[2]);
+       glTexCoord2f(0,0);
        glVertex3f(posX,posY,posZ);
+       glTexCoord2f(1,0);
        glVertex3f(posX,posY+largeur,posZ);
+       glTexCoord2f(1,1);
        glVertex3f(posX+taille,posY+largeur,posZ);
+       glTexCoord2f(0,1);
        glVertex3f(posX+taille,posY,posZ);
     glEnd();
-    glBegin(GL_POLYGON);
 
+    glBegin(GL_POLYGON);
+       glColor3f(couleur[0], couleur[1], couleur[2]);
+       glTexCoord2f(0,0);
        glVertex3f(posX,posY,posZ+hauteur);
+       glTexCoord2f(1,0);
        glVertex3f(posX,posY+largeur,posZ+hauteur);
+       glTexCoord2f(1,1);
        glVertex3f(posX+taille,posY+largeur,posZ+hauteur);
+       glTexCoord2f(0,1);
        glVertex3f(posX+taille,posY,posZ+hauteur);
     glEnd();
+
+    glDisable(GL_TEXTURE_2D);
+
     glPopMatrix();
 }
 

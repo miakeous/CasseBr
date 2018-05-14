@@ -13,11 +13,14 @@
 #include <GL/glu.h>
 #include <GL/gl.h>
 
+#include "QGLWidget"
+#include <QImage>
+
 
 class Palet
 {
 public:
-    Palet(float r, float v, float b,float tail);
+    Palet(float r, float v, float b,float tail, QImage *imagepalet);
 
     void display();
     void setPos(float x,mur *gauche,mur *droite);
@@ -35,6 +38,10 @@ private:
 
     float couleur[4];
     void rectangle(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat largeur, GLfloat hauteur);
+
+    // Identifiant de texture
+    GLuint m_TextureID = 0;
+    QImage *tex;
 
 };
 

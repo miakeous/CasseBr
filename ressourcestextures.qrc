@@ -1,2 +1,9 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource prefix="/">
+        <file>pourbrique.jpg</file>
+        <file>pourboule.jpg</file>
+        <file>pourmur.jpg</file>
+        <file>pourmurbas.jpg</file>
+        <file>pourpalet.jpg</file>
+    </qresource>
+</RCC>

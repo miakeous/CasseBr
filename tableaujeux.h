@@ -27,11 +27,18 @@ public:
 private:
     int collisionl();
     mur *gauche;
+    mur *gauche2;
     mur *droit;
+    mur *droit2;
     mur *haut;
     mur *bas;
     std::vector<Brique *> m_Brique;
     std::vector<mur *> m_Mur;
+    QImage imageBrique;
+    QImage imagePalet;
+    QImage imageMur;
+    QImage imageMurBas;
+
  private slots:
     void looselife();
     signals:

@@ -3,24 +3,30 @@
 TableauJeux::TableauJeux()
 {
     pause = false;
-    palet = new Palet(0,255,255,10);
 
+    imagePalet =  QGLWidget::convertToGLFormat(QImage(QString(":/pourpalet.jpg")));
+    imageBrique = QGLWidget::convertToGLFormat(QImage(QString(":/pourbrique.jpg")));
+    imageMur = QGLWidget::convertToGLFormat(QImage(QString(":/pourmur.jpg")));
+    imageMurBas = QGLWidget::convertToGLFormat(QImage(QString(":/pourmurbas.jpg")));
+    palet = new Palet(0,255,255,10, &imagePalet);
     for(int i=1 ;i <6; i++){
         for(int j=-5;j<5;j++){
             float v2 = rand() % 255 + 1;
             float v3 = rand() % 255 + 1;
             float v4 = rand() % 255 + 1;
 
-            m_Brique.push_back(new Brique(float(j*13),float(i*5),v2/255,v3/255,v4/255,"") );
+            m_Brique.push_back(new Brique(float(j*13),float(i*5),v2/255,v3/255,v4/255,"", &imageBrique) );
 
         }
     }
 
     myball = new boule(255,0,255);
-    gauche = new mur(-78,-50,100,3, "gauche", false);
-    droit = new mur(78,-50,100,3,"droite", false);
-    haut = new mur(-78,47,156,3,"", false);
-    bas = new mur(-78,-50,156,1,"", true);
+    gauche = new mur(-78,-50,100,3, "gauche", false, &imageMur);
+    gauche2 = new mur(-82,-50,100,3, "gauche", false, &imageMur);
+    droit = new mur(78,-50,100,3,"droite", false, &imageMur);
+    droit2 = new mur(82,-50,100,3,"droite", false, &imageMur);
+    haut = new mur(-78,47,156,3,"", false, &imageMur);
+    bas = new mur(-78,-50,156,2,"", true, &imageMurBas);
 
 
 
@@ -30,8 +36,8 @@ TableauJeux::TableauJeux()
 void TableauJeux::affiche(){
     int i = 0;
 
-        Brique *red = new Brique(-40,-20,1,0,0,"");
-        red->display();
+       // Brique *red = new Brique(-40,-20,1,0,0,"");
+       // red->display();
 
         if(myball->posdepart) // posdepart équivaut à posé sur le palet
           {
@@ -50,7 +56,9 @@ void TableauJeux::affiche(){
      palet->display();
      myball->display();
      gauche->display();
+     gauche2->display();
      droit->display();
+     droit2->display();
      haut->display();
      bas->display();
 
@@ -72,7 +80,7 @@ void TableauJeux::reset(){
             float v2 = rand() % 255 + 1;
             float v3 = rand() % 255 + 1;
             float v4 = rand() % 255 + 1;
-            m_Brique.push_back(new Brique(float(j*5),float(i*4),v2,v3,v4,""));
+            //m_Brique.push_back(new Brique(float(j*5),float(i*4),v2,v3,v4,""));
 
         }
     }
@@ -113,9 +121,9 @@ int TableauJeux::collisionl(){
     float newposx = 0;
     float newposy = 0;
     int newangle = angle;
-    qDebug()<< angle;
-    qDebug()<< posx;
-    qDebug()<< posz;
+  //  qDebug()<< angle;
+  //  qDebug()<< posx;
+  //  qDebug()<< posz;
      if(this->pause==false){
    if(droit->getPosx()-/*+ taille*/7<=posx){
        qDebug()<<"Mur de droite";
@@ -126,14 +134,14 @@ int TableauJeux::collisionl(){
 
    }
    if(gauche->getPosx()+/*+*/10>=posx){
-      // qDebug()<<"Mur de gauche";
+       qDebug()<<"Mur de gauche";
        if(angle<0){
            newangle = angle + 90;
        }else
            newangle = angle - 90;
    }
    if((posz)>= 45){
-      // qDebug()<<"Mur du haut";
+       qDebug()<<"Mur du haut";
       // newposy=1;
        if(angle==90){
            newangle = angle - 180;
