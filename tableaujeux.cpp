@@ -177,7 +177,7 @@ int TableauJeux::collisionl(){
        qDebug()<< posz+1.25;
         qDebug()<< palet->getPosY()+5;
         if(posx -1.25<= palet->getPosX()+palet->getTaille() && posx +1.25 >= palet->getPosX() ){
-            newangle = angle+90;
+            newangle = palet->angleRenvoiBoule(posx);
         }
 
 
