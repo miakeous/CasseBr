@@ -26,6 +26,7 @@ public:
     void setPos(float x,mur *gauche,mur *droite);
     void setTaille(float x);
     float taille = 10;
+    float angleRenvoiBoule(int posXBoule);
     float getTaille(){return taille;}
     float getPosX(){return posx;}
     float getPosY(){return posy;}
