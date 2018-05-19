@@ -4,6 +4,7 @@
 
 Palet::Palet(float r, float v, float b,float tail, QImage *imagepalet)
 {
+    inital = 0;
     taille= tail;
     couleur[0] = r;
     couleur[1] = v;
@@ -159,6 +160,9 @@ void Palet::setTaille(float x)
     this->taille = x;
     //updateGL();
    // qDebug() << taille;
+}
+void Palet::reset(){
+    this->posx = this->inital-5;
 }
 
 

@@ -2,20 +2,19 @@
 #define BRIQUE_H
 /*
 //include Pierre (Mac)
-
-#include <QGLWidget>
+*/
 #include "glu.h"
 #include <GLUT/glut.h>
-*/
+
 
 
 //include Manon (Windows)
+
+//#include <GL/glu.h>
+//#include <GL/gl.h>
+
+
 #include <QGLWidget>
-#include <GL/glu.h>
-#include <GL/gl.h>
-
-
-
 #include <string>
 #include <QImage>
 #include  <QDebug>

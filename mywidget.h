@@ -1,16 +1,15 @@
 #ifndef MYWIDGET_H
 #define MYWIDGET_H
 
-/*
+/**/
 //Pierre
 #include "glu.h"
 #include <GLUT/glut.h>
-*/
+
 
 //include Manon (Windows)
-#include <QGLWidget>
-#include <GL/glu.h>
-#include <GL/gl.h>
+//#include <GL/glu.h>
+//#include <GL/gl.h>
 
 
 
@@ -55,6 +54,7 @@ public slots:
     void setTailleg();
     void setPosPaletg();
     void setPosPaletd();
+    void setPosPalet();
     void setStart();
     void setStop();
 };

@@ -1,17 +1,17 @@
 #ifndef PALET_H
 #define PALET_H
-/*
+/**/
 //Pierre
 #include "glu.h"
 #include <GLUT/glut.h>
-*/
+
 
 #include <QDebug>
 #include "mur.h"
 
 //include Manon (Windows)
-#include <GL/glu.h>
-#include <GL/gl.h>
+//#include <GL/glu.h>
+//#include <GL/gl.h>
 
 #include "QGLWidget"
 #include <QImage>
@@ -29,13 +29,15 @@ public:
     float getTaille(){return taille;}
     float getPosX(){return posx;}
     float getPosY(){return posy;}
+    void reset();
+
 public slots :
 
 private:
     float posx= 0;
     float posy = -45;
     float posz = 20;
-
+    float inital;
     float couleur[4];
     void rectangle(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat largeur, GLfloat hauteur);
 

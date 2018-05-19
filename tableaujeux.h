@@ -6,6 +6,7 @@
 #include "mur.h"
 #include "palet.h"
 #include <cmath>
+#include "joueur.h"
 class TableauJeux
 {
 public:
@@ -20,10 +21,12 @@ public:
     void setTaille(float x);
     void setPosPaletd();
     void setPosPaletg();
+    void setPosPalet();
     void setStart();
     void setStop();
     bool getStart(){return this->start;}
     void setPause(bool t){pause = t;};
+    joueur getJoueur(){return *player;}
 private:
     int collisionl();
     mur *gauche;
@@ -38,7 +41,7 @@ private:
     QImage imagePalet;
     QImage imageMur;
     QImage imageMurBas;
-
+    joueur *player = new joueur();;
  private slots:
     void looselife();
     signals:

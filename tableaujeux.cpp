@@ -8,7 +8,8 @@ TableauJeux::TableauJeux()
     imageBrique = QGLWidget::convertToGLFormat(QImage(QString(":/pourbrique.jpg")));
     imageMur = QGLWidget::convertToGLFormat(QImage(QString(":/pourmur.jpg")));
     imageMurBas = QGLWidget::convertToGLFormat(QImage(QString(":/pourmurbas.jpg")));
-    palet = new Palet(0,255,255,10, &imagePalet);
+    palet = new Palet(0,255,255,15, &imagePalet);
+    player->initnbvie();
     for(int i=1 ;i <6; i++){
         for(int j=-5;j<5;j++){
             float v2 = rand() % 255 + 1;
@@ -38,6 +39,7 @@ void TableauJeux::affiche(){
 
        // Brique *red = new Brique(-40,-20,1,0,0,"");
        // red->display();
+    if(player->getnbboules()!=0){
 
         if(myball->posdepart) // posdepart équivaut à posé sur le palet
           {
@@ -69,6 +71,8 @@ void TableauJeux::affiche(){
             i++ ;
     }
     i=0;
+    }
+
 
 
 
@@ -100,6 +104,14 @@ void TableauJeux::setPosPaletd(){
 
 
 }
+void TableauJeux::setPosPalet(){
+    //qDebug() << this->pause;
+    if(this->pause==false){
+        this->palet->setPos(0,gauche,droit);
+    }
+
+
+}
 void TableauJeux::setPosPaletg(){
     if(this->pause==false){
         this->palet->setPos(2,gauche,droit);
@@ -121,36 +133,32 @@ int TableauJeux::collisionl(){
     float newposx = 0;
     float newposy = 0;
     int newangle = angle;
-  //  qDebug()<< angle;
-  //  qDebug()<< posx;
-  //  qDebug()<< posz;
+     newangle = angle%360;
      if(this->pause==false){
-   if(droit->getPosx()-/*+ taille*/7<=posx){
-       qDebug()<<"Mur de droite";
-       if(angle<0){
-           newangle = angle - 90;
-       }else
-           newangle = angle + 90;
+        if(droit->getPosx()-/*+ taille*/7<posx){
+            qDebug()<<"Mur de droite";
 
-   }
-   if(gauche->getPosx()+/*+*/10>=posx){
+                newangle = angle + 90;
+
+        }
+        if(gauche->getPosx()+/*+*/5>posx){
        qDebug()<<"Mur de gauche";
-       if(angle<0){
+
            newangle = angle + 90;
-       }else
-           newangle = angle - 90;
-   }
-   if((posz)>= 45){
-       qDebug()<<"Mur du haut";
+}
+   if((posz)> 45){
+      // qDebug()<<"Mur du haut";
       // newposy=1;
        if(angle==90){
            newangle = angle - 180;
        }else{
-            newangle = angle - 90;
+               newangle = angle + 90;
+
        }
        }
-   else if(posz<=-45){
+   else if(posz<=-50){
         //Ajouté player.looselife(); une fois fait
+       player->losevie();
        qDebug()<< "loose";
        myball->setPosX(0);
        myball->setPosZ(-20);
@@ -158,16 +166,77 @@ int TableauJeux::collisionl(){
        posx=0;
        posz=-20;
        newangle =-90;
+       palet->reset();
        pause=true;
 
 
    }
-   int i=0;
-   while(m_Brique.size()>i){
-       //if(posx > m_Brique[i].getLargeur())
-       i++;
+   //Collision Palet
+   if(posz +1.25 <= palet->getPosY()+5){
+         qDebug()<< "Position Palet";
+       qDebug()<< posz+1.25;
+        qDebug()<< palet->getPosY()+5;
+        if(posx -1.25<= palet->getPosX()+palet->getTaille() && posx +1.25 >= palet->getPosX() ){
+            newangle = angle+90;
+        }
+
+
    }
 
+
+    //Collision Brique
+
+   for(int i =0; i<m_Brique.size();i++){
+        //qDebug() << i;
+       float haut =m_Brique[i]->getPosz() + (m_Brique[i]->getTaille()/2) ;
+       float bas = m_Brique[i]->getPosz() - (m_Brique[i]->getTaille()/2);
+       float gauche =m_Brique[i]->getPosx() + (m_Brique[i]->getLargeur()/2) ;
+       float droitre = m_Brique[i]->getPosx() - (m_Brique[i]->getLargeur()/2-2);
+       if((posx - 1.25 <=  m_Brique[i]->getPosx() + (m_Brique[i]->getLargeur()/2)) && (posx+1.25 >=  m_Brique[i]->getPosx() - (m_Brique[i]->getLargeur()/2-2)) ){
+
+           if((posz -1.25 <=  m_Brique[i]->getPosz() + (m_Brique[i]->getTaille()/2)) && (posz+1.25 >=  m_Brique[i]->getPosz() - (m_Brique[i]->getTaille()/2)) ){
+                 // Ajout de player.gagnePoint();
+               player->incrementerpoints(1);
+           if(angle<=0){
+
+                qDebug() << "position1";
+                qDebug() << i;
+                qDebug() << posx;
+                qDebug() << posz;
+                qDebug() << m_Brique[i]->getPosx() + (m_Brique[i]->getLargeur()/2);
+                qDebug() << m_Brique[i]->getPosz() + (m_Brique[i]->getTaille()/2);
+                qDebug() << m_Brique[i]->getPosx() - (m_Brique[i]->getLargeur()/2);
+                qDebug() << m_Brique[i]->getPosz() - (m_Brique[i]->getTaille()/2);
+                qDebug()<< "brique par la droite ";
+                newangle = angle + 90;
+                m_Brique.erase(m_Brique.begin() + (i));
+               break;
+
+
+           }else{
+               qDebug() << "position2";
+               qDebug() << i;
+               qDebug() << posx;
+               qDebug() << posz;
+               qDebug()<< m_Brique[i]->getPosx() + (m_Brique[i]->getLargeur()/2);
+               qDebug() << m_Brique[i]->getPosz() + (m_Brique[i]->getTaille()/2);
+               qDebug()<< m_Brique[i]->getPosx() - (m_Brique[i]->getLargeur()/2);
+               qDebug() << m_Brique[i]->getPosz() - (m_Brique[i]->getTaille()/2);
+               qDebug()<< "brique par la droite ";
+               newangle = angle + 90;
+               m_Brique.erase(m_Brique.begin() + (i));
+               break;
+
+
+
+           }
+           }
+       }
+
+
+
+
+   }
     // converting degrees to radians
     double x = newangle*3.14159/180;
 
@@ -175,6 +244,7 @@ int TableauJeux::collisionl(){
    myball->setPosX(posx+2*cos(x));
    myball->setPosZ(posz+1.111111*sin(x));
    myball->setAngle(newangle);
+
 
 }
 }

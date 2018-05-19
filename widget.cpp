@@ -41,6 +41,7 @@ Widget::Widget(QWidget *parent) :
         connect(ui->grand, SIGNAL(released()),this,SLOT(setTaille2()));
         connect(this,SIGNAL(gauche()),ui->openGLWidget,SLOT(setPosPaletg()));
         connect(this,SIGNAL(droite()),ui->openGLWidget,SLOT(setPosPaletd()));
+         connect(this,SIGNAL(stop()),ui->openGLWidget,SLOT(setPosPalet()));
         connect(this,SIGNAL(start()),ui->openGLWidget,SLOT(setStart()));
         connect(this,SIGNAL(stop()),ui->openGLWidget,SLOT(setStop()));
 
@@ -100,8 +101,8 @@ void Widget::setTaille2(){
 
 }
 void Widget::affiche(){
-
-
+    ui->label_4->setText(QString::number(ui->openGLWidget->getTableau().getJoueur().getpoints()));
+    ui->label_5->setText(QString::number(ui->openGLWidget->getTableau().getJoueur().getnbboules()));
     if (webCam_->read(frame1)) {   // Capture a frame
 
         flip(frame1,frame1,1);
@@ -145,15 +146,19 @@ void Widget::match(){
         //qDebug() <<ui->openGLWidget->tableau->getStart() ;
         if(started==true){
 
-            if(abs(vect.x)>4){
+            if(abs(vect.x)>10){
                   position = vect.x;
+            }else{
+                if(vect.y>10)
+                    position = 0;
             }
             if(position<0){
                  emit gauche();
             }else if(position>0){
                 emit droite();
-            }
-            if(vect.x<vect.y){
+            }else
+                emit stop();
+           /* if(vect.x<vect.y){
                 if(vect.y>15){
                   //qDebug() << "pas pause";
                 //emit start();
@@ -162,32 +167,26 @@ void Widget::match(){
             }
             else{
                 if(vect.y< -15){
-                   // qDebug() << "pause";
-                   // qDebug() << vect.y;
+                    qDebug() << "arret palet";
+                    qDebug() << vect.y;
+                    emit stop();
                     //tableau->setPause(true);
                             //emit stop();
                 }
-           }
+           }*/
 
         }
-        else{
+
 
             if(vect.y>10){
                     //qDebug() << "start";
                     started = true;
                     tableau->setStart();
+                    tableau->setPause(false);
                     //emit start();
             }
-            else{
-                   if(vect.y< -10){
-                        //qDebug() << "stop";
-                       started=false;
-                       tableau->setStop();
-                        //emit stop();
-                   }
-            }
 
-        }
+
 
         //ui->openGLWidget->setPos(position*2,0,0);
         //ui->openGLWidget->getTableau().getPalet().setPos(position*2);

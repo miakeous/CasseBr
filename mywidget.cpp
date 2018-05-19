@@ -66,21 +66,26 @@ void MyWidget::setPos(float x, float y, float z){
 }
 
 void MyWidget::setTaillep(){
-   this->getTableau().setTaille(10.0);
-    updateGL();
-}
-void MyWidget::setTaillem(){
    this->getTableau().setTaille(15.0);
     updateGL();
 }
+void MyWidget::setTaillem(){
+   this->getTableau().setTaille(120.0);
+    updateGL();
+}
 void MyWidget::setTailleg(){
-   this->getTableau().setTaille(20.0);
+   this->getTableau().setTaille(25.0);
     updateGL();
 }
 
 void MyWidget::setPosPaletd(){
      //qDebug()<<"droite";
     this->getTableau().setPosPaletd();
+    updateGL();
+}
+void MyWidget::setPosPalet(){
+     //qDebug()<<"droite";
+    this->getTableau().setPosPalet();
     updateGL();
 }
 

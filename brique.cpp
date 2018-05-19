@@ -5,7 +5,7 @@ Brique::Brique(float x,float y, float r, float v, float b,QString filename, QIma
 {
     //On définit sa position initiale
     posx = x;
-    posy = y;
+    posy = y+10;
 
     //On définit la couleur de la brique
     couleur[0] = r;
@@ -64,7 +64,7 @@ void Brique::rectangle(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat hauteur
 
 //    glPopMatrix();
     glPushMatrix();
-    glTranslatef(posx,posy+10,-10);
+    glTranslatef(posx,posy,-10);
     glColor3f(couleur[0],couleur[1],couleur[2]);
 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 800,533, 0, GL_RGBA , GL_UNSIGNED_BYTE, tex->bits());

@@ -11,16 +11,16 @@
 #include <iostream>
 #include "tableaujeux.h"
 
-/*
+/**/
 //Pierre
 #include "glu.h"
 #include <GLUT/glut.h>
-*/
+
 
 //include Manon (Windows)
-#include <QGLWidget>
-#include <GL/glu.h>
-#include <GL/gl.h>
+
+//#include <GL/glu.h>
+//#include <GL/gl.h>
 
 
 //#include <glwidget.h>
@@ -83,6 +83,7 @@ private slots :
     void droite();
     void start();
     void stop();
+
 };
 
 #endif // WIDGET_H
