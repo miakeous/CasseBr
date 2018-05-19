@@ -39,7 +39,7 @@ void TableauJeux::affiche(){
 
        // Brique *red = new Brique(-40,-20,1,0,0,"");
        // red->display();
-    if(player->getnbboules()!=0){
+    if(player->getnbboules()!=0 || m_Brique.size()!= 0){
 
         if(myball->posdepart) // posdepart équivaut à posé sur le palet
           {
@@ -133,27 +133,58 @@ int TableauJeux::collisionl(){
     float newposx = 0;
     float newposy = 0;
     int newangle = angle;
-     newangle = angle%360;
+     newangle = angle%180;
      if(this->pause==false){
-        if(droit->getPosx()-/*+ taille*/7<posx){
+        if(droit->getPosx()-/*+ taille*/7<posx +1.25){
             qDebug()<<"Mur de droite";
+            qDebug()<<posx+1.25;
+            if(angle<90 && angle >0 ){
+                newangle = angle + (90-angle)*2;
+            }
+           // if(angle > 90 && angle < 180){
+           //         newangle = angle - (angle-90)*2;
+           // }
+            if(angle>-90 && angle <0 ){
+                newangle = angle -(angle+90)*2;
+            }
+           // if(angle < -90 && angle > 180){
+           //         newangle = angle + (angle+90)*2;
+           // }
 
-                newangle = angle + 90;
 
         }
-        if(gauche->getPosx()+/*+*/5>posx){
-       qDebug()<<"Mur de gauche";
+        if(gauche->getPosx()+/*+*/5>posx-1.25){
+             qDebug()<<"Mur de droite";
+                qDebug()<<posx-1.25;
+      // if(angle<90 && angle >0 ){
+       //    newangle = angle + (90-angle)*2;
+      // }
+       if(angle > 90 && angle < 180){
+               newangle = angle - (angle-90)*2;
 
-           newangle = angle + 90;
+       }
+       //if(angle>-90 && angle <0 ){
+       //    newangle = angle -(angle+90)*2;
+       //}
+       if(angle < -90 && angle > 180){
+               newangle = angle + (angle+90)*2;
+
+       }
+
+
 }
-   if((posz)> 45){
+   if((posz+1.25)> 45){
       // qDebug()<<"Mur du haut";
       // newposy=1;
        if(angle==90){
            newangle = angle - 180;
        }else{
-               newangle = angle + 90;
+           if(angle<90 && angle > 0)
+                newangle = angle -  (90-angle)*2;
 
+
+       if(angle>90 && angle < 180)
+           newangle = angle + (90-angle)*2;
        }
        }
    else if(posz<=-50){
@@ -197,41 +228,51 @@ int TableauJeux::collisionl(){
            if((posz -1.25 <=  m_Brique[i]->getPosz() + (m_Brique[i]->getTaille()/2)) && (posz+1.25 >=  m_Brique[i]->getPosz() - (m_Brique[i]->getTaille()/2)) ){
                  // Ajout de player.gagnePoint();
                player->incrementerpoints(1);
-           if(angle<=0){
-
-                qDebug() << "position1";
-                qDebug() << i;
-                qDebug() << posx;
-                qDebug() << posz;
-                qDebug() << m_Brique[i]->getPosx() + (m_Brique[i]->getLargeur()/2);
-                qDebug() << m_Brique[i]->getPosz() + (m_Brique[i]->getTaille()/2);
-                qDebug() << m_Brique[i]->getPosx() - (m_Brique[i]->getLargeur()/2);
-                qDebug() << m_Brique[i]->getPosz() - (m_Brique[i]->getTaille()/2);
-                qDebug()<< "brique par la droite ";
-                newangle = angle + 90;
-                m_Brique.erase(m_Brique.begin() + (i));
-               break;
-
-
-           }else{
-               qDebug() << "position2";
-               qDebug() << i;
-               qDebug() << posx;
-               qDebug() << posz;
-               qDebug()<< m_Brique[i]->getPosx() + (m_Brique[i]->getLargeur()/2);
-               qDebug() << m_Brique[i]->getPosz() + (m_Brique[i]->getTaille()/2);
-               qDebug()<< m_Brique[i]->getPosx() - (m_Brique[i]->getLargeur()/2);
-               qDebug() << m_Brique[i]->getPosz() - (m_Brique[i]->getTaille()/2);
-               qDebug()<< "brique par la droite ";
-               newangle = angle + 90;
                m_Brique.erase(m_Brique.begin() + (i));
+               if(angle<90 && angle >0 ){
+                   newangle = angle + (90-angle)*2;
+               }
+               if(angle > 90 && angle < 180){
+                       newangle = angle - (angle-90)*2;
+
+               }
+               if(angle>-90 && angle <0 ){
+                   newangle = angle -(angle+90)*2;
+               }
+               if(angle < -90 && angle > 180){
+                       newangle = angle + (angle+90)*2;
+
+               }
                break;
-
-
-
-           }
            }
        }
+
+
+        if((posz -1.25 <=  m_Brique[i]->getPosz() + (m_Brique[i]->getTaille()/2)) && (posz+1.25 >=  m_Brique[i]->getPosz() - (m_Brique[i]->getTaille()/2)) ){
+            if((posx - 1.25 <=  m_Brique[i]->getPosx() + (m_Brique[i]->getLargeur()/2)) && (posx+1.25 >=  m_Brique[i]->getPosx() - (m_Brique[i]->getLargeur()/2-2)) ){
+                 // Ajout de player.gagnePoint();
+                qDebug() << "laaaaa";
+               player->incrementerpoints(1);
+               m_Brique.erase(m_Brique.begin() + (i));
+               if(angle<90 && angle >0 ){
+                   newangle = angle - (90-angle)*2;
+               }
+               if(angle > 90 && angle < 180){
+                       newangle = angle + (angle-90)*2;
+
+               }
+               if(angle>-90 && angle <0 ){
+                   newangle = angle +(angle+90)*2;
+               }
+               if(angle < -90 && angle > 180){
+                       newangle = angle - (angle+90)*2;
+
+               }
+               break;
+           }
+       }
+
+
 
 
 

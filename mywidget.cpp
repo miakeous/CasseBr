@@ -66,15 +66,15 @@ void MyWidget::setPos(float x, float y, float z){
 }
 
 void MyWidget::setTaillep(){
-   this->getTableau().setTaille(15.0);
+   this->getTableau().setTaille(25.0);
     updateGL();
 }
 void MyWidget::setTaillem(){
-   this->getTableau().setTaille(120.0);
+   this->getTableau().setTaille(30.0);
     updateGL();
 }
 void MyWidget::setTailleg(){
-   this->getTableau().setTaille(25.0);
+   this->getTableau().setTaille(35.0);
     updateGL();
 }
 

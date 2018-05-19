@@ -153,9 +153,9 @@ void Widget::match(){
                     position = 0;
             }
             if(position<0){
-                 emit gauche();
-            }else if(position>0){
                 emit droite();
+            }else if(position>0){
+                 emit gauche();
             }else
                 emit stop();
            /* if(vect.x<vect.y){

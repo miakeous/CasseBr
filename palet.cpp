@@ -168,7 +168,7 @@ void Palet::reset(){
 float Palet::angleRenvoiBoule(int posXBoule)
 {
     float proportionnel = (posXBoule - posx)/taille;
-    float angle = 30 + proportionnel*120;
+    float angle = 150 - proportionnel*120;
     return angle;
 
 }
