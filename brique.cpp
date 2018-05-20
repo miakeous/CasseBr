@@ -149,4 +149,35 @@ void Brique::rectangle(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat hauteur
     glPopMatrix();
 }
 
+int Brique::coteTouche(float posXboule, float posYboule)
+{
+    if(posXboule > posx && posXboule < posx+ 12 && posYboule == posy)
+    {
+        return 1 ; // on touche le bas
+    }
+    else
+    {
+        if(posXboule > posx && posXboule < posx+ 12 && posYboule == posy+4)
+        {
+            return 2; // on touche le haut
+        }
+        else
+        {
+            if(posYboule > posy && posYboule < posy +4 && posXboule == posx)
+            {
+                return 3; // on touche la gauche
+            }
+            else
+                if(posYboule > posy && posYboule < posy +4 && posXboule == posx+12)
+                {
+                    return 4; // on touche la droite
+                }
+            else
+                {
+                    return 0; // on ne touche pas la brique
+                }
+        }
+    }
+}
+
 
