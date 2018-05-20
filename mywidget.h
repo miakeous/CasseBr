@@ -31,7 +31,6 @@ public:
     void update(){updateGL();}
     void setTaille(float x);
     void setTableau(TableauJeux *t);
-    void levelup();
 private :
 
     GLUquadric* quadrique =  gluNewQuadric();

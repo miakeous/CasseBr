@@ -6,7 +6,7 @@
 #include <QTimer>
 #include <QDebug>
 #include <QGLWidget>
-#include<QKeyEvent>
+
 #include <cstdio>
 #include <iostream>
 #include "tableaujeux.h"
@@ -69,8 +69,8 @@ private:
     float position = 0;
 
 //    void match();
-protected:
-    void keyPressEvent(QKeyEvent *event);
+
+
 private slots :
     void affiche();
     void match();
@@ -83,7 +83,6 @@ private slots :
     void droite();
     void start();
     void stop();
-
 
 };
 

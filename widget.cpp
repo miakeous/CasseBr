@@ -44,7 +44,6 @@ Widget::Widget(QWidget *parent) :
          connect(this,SIGNAL(stop()),ui->openGLWidget,SLOT(setPosPalet()));
         connect(this,SIGNAL(start()),ui->openGLWidget,SLOT(setStart()));
         connect(this,SIGNAL(stop()),ui->openGLWidget,SLOT(setStop()));
-        //connect(this,SIGNAL(keyPressEvent(QKeyEvent*))
 
         //qDebug() << "dans l'open";
        // timer2->connect(timer2, SIGNAL(timeout()),this, SLOT(tire()));
@@ -104,7 +103,6 @@ void Widget::setTaille2(){
 void Widget::affiche(){
     ui->label_4->setText(QString::number(ui->openGLWidget->getTableau().getJoueur().getpoints()));
     ui->label_5->setText(QString::number(ui->openGLWidget->getTableau().getJoueur().getnbboules()));
-    ui->label_7->setText(QString::number(ui->openGLWidget->getTableau().getJoueur().getniveau()));
     if (webCam_->read(frame1)) {   // Capture a frame
 
         flip(frame1,frame1,1);
@@ -206,14 +204,4 @@ void Widget::match(){
     // Swap matrixes
      swap(frameRect1,frameRect2);
 }
-}
-void Widget::keyPressEvent(QKeyEvent * event)
-{
-    if(event->key() == Qt::Key_Up){
-        // move back in history
-        ui->openGLWidget->levelup();
-        //ui->openGLWidget->updateGL();
-    }
-
-
 }
