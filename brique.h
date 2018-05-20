@@ -3,15 +3,15 @@
 /*
 //include Pierre (Mac)
 */
-#include "glu.h"
-#include <GLUT/glut.h>
+//#include "glu.h"
+//#include <GLUT/glut.h>
 
 
 
 //include Manon (Windows)
 
-//#include <GL/glu.h>
-//#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/gl.h>
 
 
 #include <QGLWidget>
@@ -34,6 +34,7 @@ public:
     GLfloat getColour(){return couleur[0];}
     int getPosx(){return posx;}
     int getPosz(){return posy;}
+    int coteTouche(float posXboule, float posYboule);
 
 private :
     float posx = 0;
