@@ -74,7 +74,7 @@ void MyWidget::setTaillem(){
     updateGL();
 }
 void MyWidget::setTailleg(){
-   this->getTableau().setTaille(35.0);
+   tableau->setTaille(150.0);
     updateGL();
 }
 
@@ -103,4 +103,11 @@ void MyWidget::setStop(){
    //  qDebug()<<"stop";
     this->getTableau().setStart();
      updateGL();
+}
+
+
+void MyWidget::levelup(){
+
+    tableau->reset();
+    updateGL();
 }

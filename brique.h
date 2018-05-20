@@ -34,7 +34,7 @@ public:
     GLfloat getColour(){return couleur[0];}
     int getPosx(){return posx;}
     int getPosz(){return posy;}
-
+    int coteTouche(float posXboule, float posYboule);
 private :
     float posx = 0;
     float posy = 0;

@@ -17,7 +17,7 @@ public:
     int getniveau(){return niveau;}
 
 private :
-    int niveau = 0;
+    int niveau = 1;
     int points = 0;
     int nbboulesrestantes = 3;
 };
