@@ -151,24 +151,24 @@ void Brique::rectangle(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat hauteur
 
 int Brique::coteTouche(float posXboule, float posYboule)
 {
-    if(posXboule > posx && posXboule < posx+ 12 && posYboule == posy)
+    if(posXboule > posx && posXboule < posx+ 12 && posYboule > posy - 0.5 && posYboule < posy +0.5)
     {
         return 1 ; // on touche le bas
     }
     else
     {
-        if(posXboule > posx && posXboule < posx+ 12 && posYboule == posy+4)
+        if(posXboule > posx && posXboule < posx+ 12 && posYboule > posy +4 - 0.5 && posYboule < posy +4 +0.5)
         {
             return 2; // on touche le haut
         }
         else
         {
-            if(posYboule > posy && posYboule < posy +4 && posXboule == posx)
+            if(posYboule > posy && posYboule < posy +4 && posXboule > posx - 0.5 && posXboule < posx +0.5)
             {
                 return 3; // on touche la gauche
             }
             else
-                if(posYboule > posy && posYboule < posy +4 && posXboule == posx+12)
+                if(posYboule > posy && posYboule < posy +4 && posXboule > posx +12 - 0.5 && posXboule < posx +12 +0.5)
                 {
                     return 4; // on touche la droite
                 }
