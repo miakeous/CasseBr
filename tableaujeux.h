@@ -27,6 +27,7 @@ public:
     bool getStart(){return this->start;}
     void setPause(bool t){pause = t;};
     joueur getJoueur(){return *player;}
+    void setVitesse(int niveau);
 private:
     int collisionl();
     mur *gauche;

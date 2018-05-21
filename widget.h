@@ -40,24 +40,33 @@ public:
     ~Widget();
 
 private:
+    //Controlleur du jeux
     TableauJeux *tableau;
+    //interface Graphique
     Ui::Widget *ui;
+    //Boolean de début de jeux
     bool started = false;
     //Mat match(Mat frame);
+    //Les différentes matrices pour la reconnaissance visuel
     Mat frame1,frame2,frameRect1,frameRect2;
     Mat resultImage;
     //Mat templateImage;
     //Mat templateFinale;
+
     bool templi= false;
+
     double taillex = 100.;
     double distance = 0.;
     double tailley= 150.;
+    // Gestion des rectangles de travail (les rectangles seront une partie de la matrice image)
     Rect *workingRect;
     Rect *templateRect;
+    //Notre base pour le vecteur mouvement
     Point *workingCenter;
     QTimer *timer2;
+    //Notre webcam
     VideoCapture * webCam_;
-
+    //Taille de l'affichage Cam
     int frameWidth=(300);
     int frameHeight=200;
 
@@ -69,15 +78,20 @@ private:
     float position = 0;
 
 //    void match();
+    //Gestion des touches pour passage de niveau a la main
 protected:
     void keyPressEvent(QKeyEvent *event);
 private slots :
+    //Affichage de la caméra
     void affiche();
+    //Fonction qui va detecter le mouvement
     void match();
+    //Fonction qui gere les checkboxs pour la taille du palet (pas 2 de cochet en meme temps)
     void setTaille();
     void setTaille1();
     void setTaille2();
 
+    //les différents signaux émis pour gerer le déplacement du palet et du jeux avec la reconnaissance visuel
     signals :
     void gauche();
     void droite();

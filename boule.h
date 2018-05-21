@@ -29,6 +29,12 @@ public:
     int getAngle(){return angle;}
     void setAngle(int angles){angle = angles;}
     //float getPosZ(){return posz;}
+    float vitesseX =2 ;
+    float vitesseY=1.11111;
+    float getVitessex(){return vitesseX;}
+    float getVitessey(){return vitesseY;}
+    void setVitessex(float x){vitesseX =x;}
+    void setVitessey(float y){vitesseY =y;}
 
 private :
     GLUquadric* quadrique =  gluNewQuadric();

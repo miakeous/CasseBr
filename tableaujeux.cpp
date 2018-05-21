@@ -112,6 +112,7 @@ void TableauJeux::reset(){
     myball->setAngle(-90);
 
     palet->reset();
+    setVitesse(player->getniveau());
 
 }
 
@@ -411,12 +412,23 @@ int TableauJeux::collisionl(){
     double x = newangle*3.14159/180;
 
    //qDebug()<< 1.111111*sin(x);
-   myball->setPosX(posx+2*cos(x));
-   myball->setPosZ(posz+1.111111*sin(x));
+   myball->setPosX(posx+myball->getVitessex()*cos(x));
+   myball->setPosZ(posz+myball->getVitessey()*sin(x));
    myball->setAngle(newangle);
 
 
 }
+}
+
+
+
+
+
+
+void TableauJeux::setVitesse(int niveau){
+    myball->setVitessex(myball->getVitessex()*niveau/3);
+    myball->setVitessey(myball->getVitessey()*niveau/3);
+
 }
 
 
