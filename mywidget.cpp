@@ -5,7 +5,7 @@ MyWidget::MyWidget(QWidget *parent) :
     QGLWidget(parent)
 {
     // Reglage de la taille/position
-    gluQuadricDrawStyle(quadrique, GLU_FILL);
+   // gluQuadricDrawStyle(quadrique, GLU_FILL);
     //
 
 

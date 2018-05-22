@@ -20,24 +20,30 @@
 class boule
 {
 public:
+    //Constructeur qui prend en parametre la couleur de la boule
     boule(float r, float v, float b);
 
-    void display(); // affiche la boule
-    // setters et getters sur les attributs de position
+    // Affichage de la boule
+    void display();
+
+    //Fonction de position de la boule
     void setPosX(float x){posx = x;}
     void setPosZ(float z){posz = z;}
+
+    //Retourne les positions de la boule
     float getPosX(){return posx;}
     float getPosZ(){return posz;}
 
-    void setDepart(){posdepart=false;} // lance le déplacement de la boule
+    // Booleans qui permet de savoir si la boule est au dessus du palet ou non
+    void setDepart(){posdepart=false;}
     bool posdepart = true;
-    int angle = 45; // angle dans lequel se dirige la boule
+
+    // l'angle de la trajectoire de la boule
+    int angle = 45;
     int getAngle(){return angle;}
     void setAngle(int angles){angle = angles;}
 
-    //float getPosZ(){return posz;}
-
-    // Attributs et getters / setters pour la vitesse
+    //Vitesse de la boule.
     float vitesseX =2 ;
     float vitesseY=1.11111;
     float getVitessex(){return vitesseX;}
@@ -46,18 +52,16 @@ public:
     void setVitessey(float y){vitesseY =y;}
 
 private :
-    // la quadrique pour l'affichage de la sphère
+    //Quadradric pour la boule
     GLUquadric* quadrique =  gluNewQuadric();
 
-    //position de la sphère dans la scène
+    // Les positions de la boule
     float posx = 0;
     float posy = 0;
     float posz = 17.5;
-
-    // couleur de la boule
+    //Le tableau de couleur de la boule
     float couleur[4];
-
-    // image et texture associée pour la boule
+    //Les textures de la boule
     GLuint m_TextureID = 0;
     QImage tex;
 
