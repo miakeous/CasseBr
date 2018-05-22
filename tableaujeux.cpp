@@ -87,11 +87,13 @@ void TableauJeux::affiche(){
 void TableauJeux::reset(){
     pause=true;
     player->incrementerniveau();
-  qDebug()<< m_Brique.size();
+ // qDebug()<< m_Brique.size();
  if(m_Brique.size()!=0)
      m_Brique.clear();
  qDebug()<< m_Brique.size();
-    for(int i=1 ;i <6; i++){
+
+    if(player->getniveau()!= 7){
+        for(int i=1 ;i <6; i++){
 
         for(int j=-5;j<5;j++){
             float v2 = rand() % 255 + 1;
@@ -110,10 +112,30 @@ void TableauJeux::reset(){
     myball->setPosX(0);
     myball->setPosZ(-20);
     myball->setAngle(-90);
-
     palet->reset();
     setVitesse(player->getniveau());
+}
+    else{
+for(int i=-6 ;i <6; i++){
 
+for(int j=-5;j<5;j++){
+    float v2 = rand() % 255 + 1;
+    float v3 = rand() % 255 + 1;
+    float v4 = rand() % 255 + 1;
+     qDebug()<< "on ajoute";
+    //    qDebug()<<affiche;
+        m_Brique.push_back(new Brique(float(j*13),float(i*5),v2/255,v3/255,v4/255,"", &imageBrique) );
+
+
+}
+}
+//updateGl();
+myball->setPosX(0);
+myball->setPosZ(-20);
+myball->setAngle(-90);
+palet->reset();
+setVitesse(player->getniveau());
+    }
 }
 
 
@@ -426,8 +448,8 @@ int TableauJeux::collisionl(){
 
 
 void TableauJeux::setVitesse(int niveau){
-    myball->setVitessex(myball->getVitessex()*niveau/3);
-    myball->setVitessey(myball->getVitessey()*niveau/3);
+    myball->setVitessex(myball->getVitessex()*(1+niveau/10));
+    myball->setVitessey(myball->getVitessey()*(1+niveau/10));
 
 }
 

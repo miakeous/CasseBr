@@ -43,9 +43,9 @@ void MyWidget::paintGL(){
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(-90,90,-50,50,-50,50);
-    //glFrustum(-50,50,-50,50,-20,50);
+    //glFrustum(-90,90,-50,50,10,-50);
     //gluLookAt(0,20,20,0,0,0,0,1,0);
-    gluLookAt(0,0,30,0,0,0,0,1,0);
+    gluLookAt(0,5,30,0,0,0,0,1,0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
    /* glPushMatrix();
@@ -58,12 +58,6 @@ void MyWidget::paintGL(){
 
 }
 
-void MyWidget::setPos(float x, float y, float z){
-    posx = x;
-    posy = y;
-    posz = z;
-    updateGL();
-}
 
 void MyWidget::setTaillep(){
    this->getTableau().setTaille(25.0);

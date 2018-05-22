@@ -12,7 +12,7 @@ Brique::Brique(float x,float y, float r, float v, float b,QString filename, QIma
     couleur[1] = v;
     couleur[2] = b;
     couleur[3] = 1.0;
-    taille = 4;
+    taille = 2;
     hauteur = 12;
     largeur = 4;
     //On importe une belle texture pour la brique

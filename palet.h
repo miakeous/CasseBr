@@ -2,16 +2,16 @@
 #define PALET_H
 /**/
 //Pierre
-//#include "glu.h"
-//#include <GLUT/glut.h>
+#include "glu.h"
+#include <GLUT/glut.h>
 
 
 #include <QDebug>
 #include "mur.h"
 
 //include Manon (Windows)
-#include <GL/glu.h>
-#include <GL/gl.h>
+//#include <GL/glu.h>
+//#include <GL/gl.h>
 
 #include "QGLWidget"
 #include <QImage>

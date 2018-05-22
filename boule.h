@@ -2,12 +2,12 @@
 #define BOULE_H
 //Pierre
 
-//#include "glu.h"
-//#include <GLUT/glut.h>
+#include "glu.h"
+#include <GLUT/glut.h>
 
 
 // Manon
-  #include <GL/glu.h>
+  //#include <GL/glu.h>
 
 #include <QImage>
 #include <QGLWidget>

@@ -29,11 +29,6 @@ public:
     void setTableau(TableauJeux *t);
     //Constructeur
     explicit MyWidget(QWidget * parent = nullptr);
-    //Jcrois c'est useless
-    void setPos(float x, float y, float z);
-
-    //Jcrois c'est useless
-    void update(){updateGL();}
     // Fonction qui être appelé par les slots de taille du Palet
     void setTaille(float x);
 
@@ -41,10 +36,7 @@ public:
     void levelup();
 private :
 
-    //Jcrois c'est useless
-    float posx = 0;
-    float posy = 0;
-    float posz = 0;
+
     //Fonction GL
     void initializeGL();
 

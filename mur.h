@@ -3,14 +3,14 @@
 /*
 //include Pierre (mac)
 */
-//#include "glu.h"
-//#include <GLUT/glut.h>
+#include "glu.h"
+#include <GLUT/glut.h>
 
 
 
 //include Manon (windows)
-#include <GL/glu.h>
-#include <GL/gl.h>
+//#include <GL/glu.h>
+//#include <GL/gl.h>
 
 #include <QDebug>
 #include <QImage>

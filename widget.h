@@ -54,7 +54,7 @@ private:
     //Mat templateFinale;
 
     bool templi= false;
-
+    int tempasse = 0;
     double taillex = 100.;
     double distance = 0.;
     double tailley= 150.;
@@ -64,6 +64,7 @@ private:
     //Notre base pour le vecteur mouvement
     Point *workingCenter;
     QTimer *timer2;
+    QTimer *timer3;
     //Notre webcam
     VideoCapture * webCam_;
     //Taille de l'affichage Cam
@@ -82,6 +83,7 @@ private:
 protected:
     void keyPressEvent(QKeyEvent *event);
 private slots :
+    void updateTime();
     //Affichage de la caméra
     void affiche();
     //Fonction qui va detecter le mouvement
@@ -97,6 +99,7 @@ private slots :
     void droite();
     void start();
     void stop();
+
 
 
 };

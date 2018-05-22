@@ -29,7 +29,9 @@ Widget::Widget(QWidget *parent) :
         //tableau->setStart();
         ui->openGLWidget->setTableau(tableau);
         timer2 = new QTimer();
+        timer3 = new QTimer();
         timer2->start();
+
         timer2->connect(timer2, SIGNAL(timeout()),this, SLOT(affiche()));
         timer2->connect(timer2, SIGNAL(timeout()),this, SLOT(match()));
         ui->petit->setChecked(true);
@@ -44,6 +46,7 @@ Widget::Widget(QWidget *parent) :
          connect(this,SIGNAL(stop()),ui->openGLWidget,SLOT(setPosPalet()));
         connect(this,SIGNAL(start()),ui->openGLWidget,SLOT(setStart()));
         connect(this,SIGNAL(stop()),ui->openGLWidget,SLOT(setStop()));
+        timer3->connect(timer3, SIGNAL(timeout()), this, SLOT(updateTime()));
         //connect(this,SIGNAL(keyPressEvent(QKeyEvent*))
 
         //qDebug() << "dans l'open";
@@ -101,9 +104,22 @@ void Widget::setTaille2(){
 
 
 }
+
+void Widget::updateTime(){
+    qDebug()<< "ici";
+    tempasse +=1;
+    ui->tempsjeu->setText(QString::number(tempasse,10));
+}
+
 void Widget::affiche(){
     ui->label_4->setText(QString::number(ui->openGLWidget->getTableau().getJoueur().getpoints()));
     ui->label_5->setText(QString::number(ui->openGLWidget->getTableau().getJoueur().getnbboules()));
+    ui->label_7->setText(QString::number(ui->openGLWidget->getTableau().getJoueur().getniveau()));
+    if(started==true && !timer3->isActive()){
+        qDebug()<< timer3->isActive();
+        timer3->start();
+
+    }
     ui->label_7->setText(QString::number(ui->openGLWidget->getTableau().getJoueur().getniveau()));
     if (webCam_->read(frame1)) {   // Capture a frame
 
